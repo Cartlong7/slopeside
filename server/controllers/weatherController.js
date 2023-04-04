@@ -4,13 +4,13 @@ const weatherController = {};
 
 
 weatherController.getWeather = (req, res, next) => {
-    console.log('hello');
-    try {
-        return next();
-    }
-    catch (err) {
-        return next(err);
-    }
-}
+  console.log('hello');
+  try {
+    return next();
+  }
+  catch (err) {
+    return next(err);
+  }
+};
 
 module.exports = weatherController;

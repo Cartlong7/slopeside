@@ -1,29 +1,23 @@
 const express = require('express');
 const path = require('path');
-const weatherController = require('./controllers/weatherController.js')
+const weatherController = require('./controllers/weatherController.js');
 const app = express();
 const cors = require('cors');
-const mongoose = require('mongoose');
 
 const PORT = 3000;
-
-// connection to MongoDB with error handling
-mongoose.connect('mongodb://127.0.0.1:27017/test')
-  .catch(error => handleError(error));
 
 app.use(cors());
 app.use(express.json());
 
 
-
 // ADD ROUTES HERE (1 GET, 1 POST, 1 UPDATE, 1 DELETE)
-
+// Route to weatherController middleware to establish connection to mongoDB and serve weather data 
 
 
 
 
 // route handler for unknown routes
-app.use((req, res) => res.status(404).send('Error: request to unknown route'))
+app.use((req, res) => res.status(404).send('Error: request to unknown route'));
 
 // global error handler
 app.use((err, req, res, next) => {
@@ -40,7 +34,7 @@ app.use((err, req, res, next) => {
 
 //starting server
 app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}...`);
+  console.log(`Server listening on port: ${PORT}...`);
 });
 
 module.exports = app;
