@@ -13,6 +13,12 @@ app.use(express.json());
 // ADD ROUTES HERE (1 GET, 1 POST, 1 UPDATE, 1 DELETE)
 // Route to weatherController middleware to establish connection to mongoDB and serve weather data 
 
+// router testing
+app.get('/',
+  weatherController.getWeather,
+  (req, res) => {
+    res.status(200).send('Hi there');
+  });
 
 
 
