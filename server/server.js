@@ -3,12 +3,30 @@ const path = require('path');
 const weatherController = require('./controllers/weatherController.js');
 const app = express();
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
 
+
+// connection to MongoDB with error handling
+async function connectToDb() {
+  try {
+    await mongoose.connect('mongodb://127.0.0.1:27017/weather', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      dbName: 'weather'
+    });
+    console.log('Connection to DB has been established.');
+  } catch (error) {
+    console.log(`Error: ${error}, failed to connect to DB...`);
+  }
+}
+
+// Call the connectToDb function to connect to MongoDB
+connectToDb();
 
 // ADD ROUTES HERE (1 GET, 1 POST, 1 UPDATE, 1 DELETE)
 // Route to weatherController middleware to establish connection to mongoDB and serve weather data 
@@ -17,7 +35,7 @@ app.use(express.json());
 app.get('/',
   weatherController.getWeather,
   (req, res) => {
-    res.status(200).send('Hi there');
+    res.status(200).send(res.locals.hi);
   });
 
 
