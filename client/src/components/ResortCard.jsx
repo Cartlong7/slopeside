@@ -8,11 +8,9 @@ function ResortCard(props) {
     // resort properties will have to be updated to reflect their organization in the card
     // create multiple divs to hold property data in sanctioned areas of the card
     <div className='resort-conditions'>
-      <h3>{resort.name}</h3>
       <p>{resort.location}</p>
       <p>{resort.weatherData.properties.periods[0].detailedForecast}</p>
       <h4>Current Conditions</h4>
-
     </div>
   );
 } 
