@@ -32,10 +32,10 @@ connectToDb();
 // Route to weatherController middleware to establish connection to mongoDB and serve weather data 
 
 // router testing
-app.get('/',
+app.get('/api/weather',
   weatherController.getWeather,
   (req, res) => {
-    res.status(200).send(res.locals.hi);
+    res.status(200).json(res.locals.resort);
   });
 
 
