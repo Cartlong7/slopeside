@@ -31,6 +31,7 @@ weatherController.getWeather = async (req, res, next) => {
     const resort = resorts.find(
       (r) => r.latitude === latitude && r.longitude === longitude
     );
+
     console.log(resort);
 
     if (!resort) {
@@ -40,6 +41,9 @@ weatherController.getWeather = async (req, res, next) => {
     const url = `https://api.weather.gov/gridpoints/${resort.gridOffice}/${resort.gridX},${resort.gridY}/forecast`;
 
     console.log(url);
+    // console.log(resort.gridOffice);
+    // console.log(resort.gridX);
+    // console.log(resort.gridY);
 
     const response = await axios.get(url);
 
@@ -52,18 +56,26 @@ weatherController.getWeather = async (req, res, next) => {
       detailedForecast: response.data.properties.periods[0].detailedForecast,
     };
 
-    const updatedWeather = await Weather.findOneAndUpdate(
-      { latitude, longitude },
-      { weatherData },
-      { upsert: true, new: true }
-    );
-    
-    console.log(updatedWeather);
+    // Somehow this query to my database is breaking the middleware functionality because it works when its commented out.
 
-    res.locals.resort = updatedWeather;
+    // const updatedWeather = await Weather.findOneAndUpdate(
+    //   { latitude, longitude },
+    //   { weatherData },
+    //   { upsert: true, new: true }
+    // );
+    
+    // console.log(updatedWeather);
+
+    res.locals.resort = weatherData;
+    console.log(res.locals.resort);
+
     return next();
   } catch (err) {
-    return next(err);
+    return next({
+      log: 'Express error handler caught unknown middleware error',
+      status: 400,
+      message: { err: 'An error occurred in weatherController.getWeather' }
+    });
   }
 };
 
