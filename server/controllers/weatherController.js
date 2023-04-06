@@ -40,7 +40,7 @@ weatherController.getWeather = async (req, res, next) => {
 
     const url = `https://api.weather.gov/gridpoints/${resort.gridOffice}/${resort.gridX},${resort.gridY}/forecast`;
 
-    console.log(url);
+    console.log(resort.gridOffice);
     // console.log(resort.gridOffice);
     // console.log(resort.gridX);
     // console.log(resort.gridY);
@@ -65,7 +65,7 @@ weatherController.getWeather = async (req, res, next) => {
     
     // console.log(updatedWeather);
 
-    res.locals.resort = weatherData;
+    res.locals.resort = JSON.stringify(weatherData);
     console.log(res.locals.resort);
 
     return next();
