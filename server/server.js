@@ -35,7 +35,7 @@ connectToDb();
 app.get('/api/weather',
   weatherController.getWeather,
   (req, res) => {
-    res.status(200).send(res.locals.resort);
+    res.status(200).json(res.locals.resort);
   });
 
 

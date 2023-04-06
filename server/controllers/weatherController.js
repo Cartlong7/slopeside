@@ -26,12 +26,11 @@ React Client -> Express Server -> weather.gov API -> Express Server -> MongoDB D
  
 
 weatherController.getWeather = async (req, res, next) => {
-  const { latitude, longitude } = req.query;
-
+  // const { latitude, longitude } = req.query;
+  const { name } = req.query;
+  // console.log(req.query);
   try {
-    const resort = resorts.find(
-      (r) => r.latitude === latitude && r.longitude === longitude
-    );
+    const resort = resorts.find((r) => r.name === name);
 
     console.log(resort);
 
@@ -66,7 +65,7 @@ weatherController.getWeather = async (req, res, next) => {
     
     // console.log(updatedWeather);
 
-    res.locals.resort = JSON.stringify(weatherData);
+    res.locals.resort = weatherData;
     console.log(res.locals.resort);
 
     return next();
