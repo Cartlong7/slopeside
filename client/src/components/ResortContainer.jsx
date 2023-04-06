@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ResortCard from './ResortCard';
+import Copper from './Copper';
 
 function ResortContainer() {
   const [resorts, setResorts] = useState([]);
@@ -13,26 +14,38 @@ function ResortContainer() {
   //   fetchResorts();
   // }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetch('/api/weather')
+  //     .then(res => res.json())
+  //     .then(data => console.log(data));
+  // }, []);
+
+  const handleAddResort = () => {
+    // Make a fetch request to your server to get the data
     fetch('/api/weather')
       .then(res => res.json())
-      .then(data => setResorts(data));
-    console.log('hello there');
-  }, []);
+      .then(data => {
+        // Update the resorts state with the fetched data
+        setResorts([...resorts, data]);
+      })
+      .catch(error => console.log(error));
+  };
 
   console.log(resorts);
 
-  const resortCards = resorts.map(resort => (
-    // eslint-disable-next-line semi
-    <ResortCard key={resort.id} resort={resort}/>
-  ));
+  const resortCards = resorts.map(resort => {
+    return <ResortCard key={resort.id} resort={resort}/>;
+  });
 
   console.log('did map');
 
   return (
     <div className='resort-container'>
       {resortCards}
-      <p>WHY CANT I RENDER ANYTHING</p>
+      <Copper/>
+      <button className='add-resort' onClick={handleAddResort}>
+        Add a resort
+      </button>
     </div>
   );
 }

@@ -10,11 +10,11 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-
+const URI = 'mongodb+srv://cartlong:E4UwlcV8xMOnmle2@slopeside.ael6zmo.mongodb.net/?retryWrites=true&w=majority';
 // connection to MongoDB with error handling
 async function connectToDb() {
   try {
-    await mongoose.connect('mongodb://127.0.0.1:27017/weather', {
+    await mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       dbName: 'weather'
@@ -35,7 +35,7 @@ connectToDb();
 app.get('/api/weather',
   weatherController.getWeather,
   (req, res) => {
-    res.status(200).json(res.locals.resort);
+    res.status(200).send(res.locals.resort);
   });
 
 

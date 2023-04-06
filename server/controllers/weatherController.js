@@ -4,6 +4,7 @@ const resorts = require('../resorts');
 
 const weatherController = {};
 
+
 /*
 Understanding the flow of data:
 
@@ -56,17 +57,16 @@ weatherController.getWeather = async (req, res, next) => {
       detailedForecast: response.data.properties.periods[0].detailedForecast,
     };
 
+    // const temperature = response.data.properties.periods[0].temperature;
+
+
     // Somehow this query to my database is breaking the middleware functionality because it works when its commented out.
 
-    // const updatedWeather = await Weather.findOneAndUpdate(
-    //   { latitude, longitude },
-    //   { weatherData },
-    //   { upsert: true, new: true }
-    // );
+    // const updatedWeather = await Weather.create({temperature});
     
     // console.log(updatedWeather);
 
-    res.locals.resort = weatherData;
+    res.locals.resort = JSON.stringify(weatherData);
     console.log(res.locals.resort);
 
     return next();
