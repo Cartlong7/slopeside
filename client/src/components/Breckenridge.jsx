@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import copperMountain from '../../public/copperMountain.png';
+import React, { useState, useEffect } from 'react';
+import breck from '../../public/breck-logo.png';
 
-function Copper () {
+function Breckenridge() {
 
   const [conditions, setConditions] = useState(null);
 
   useEffect(() => {
-    fetch('/api/weather?name=Copper Mountain')
+    fetch('/api/weather?name=Breckenridge')
       .then(res => {
         console.log(res);
         return res.json();
@@ -21,10 +21,10 @@ function Copper () {
         <button>Remove resort</button>
       </div>
       <div className='mountain-name'>
-        <img src={copperMountain} style={{width: '10rem', height: '8rem'}} />
+        <img src={breck} style={{width: '11rem', height: '5rem'}} />
         <div className='location'>
-          <h3>Copper Mountain</h3>
-          <p>Frisco, CO, USA</p>
+          <h3>Breckenridge</h3>
+          <p>Breckenridge, CO, USA</p>
         </div>
       </div>
       <h4>Current Conditions</h4>
@@ -40,4 +40,6 @@ function Copper () {
   );
 }
 
-export default Copper;
+export default Breckenridge;
+
+

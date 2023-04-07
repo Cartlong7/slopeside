@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ResortCard from './ResortCard';
 import Copper from './Copper';
+import Breckenridge from './Breckenridge';
 
 function ResortContainer() {
   const [conditions, setConditions] = useState(null);
@@ -14,13 +15,6 @@ function ResortContainer() {
       .then(data => setConditions(data))
       .catch(error => console.log(error));
   }, []);
-
-  // useEffect(() => {
-  //   fetch('/api/weather?name=Vail')
-  //     .then(res => res.json())
-  //     .then(data => setConditions(data))
-  //     .catch(error => console.log(error));
-  // }, []);
 
   // const handleAddResort = () => {
   //   // Make a fetch request to your server to get the data
@@ -45,8 +39,8 @@ function ResortContainer() {
 
   return (
     <div className='resort-container'>
-      {/* {resortCards} */}
       <ResortCard conditions = {conditions}/>
+      <Breckenridge/>
       <Copper/>
       <button className='add-resort' onClick={console.log('please work')}>
         Add a resort

@@ -14,16 +14,13 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: flex-start;
-}
-
-.remove-resort {
-    display: grid;
+    /* align-items: flex-start; */
 }
 
 .remove-resort button {
     background-color: #242424;
     color: rgba(255, 255, 255, 0.6);
+    display: flex;
 }
 
 .mountain-name {
@@ -44,4 +41,5 @@ button {
 .weather-props {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }

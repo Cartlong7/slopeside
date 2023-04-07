@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <h1>Slopeside</h1>
+      <h3>A unified front for skiing conditions.</h3>
       <ResortContainer/>
     </div>
   );

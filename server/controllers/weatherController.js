@@ -65,7 +65,7 @@ weatherController.getWeather = async (req, res, next) => {
     
     // console.log(updatedWeather);
 
-    res.locals.resort = JSON.stringify(weatherData);
+    res.locals.resort = weatherData;
     console.log(res.locals.resort);
 
     return next();
