@@ -4,13 +4,14 @@ const weatherController = require('./controllers/weatherController.js');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
 
-const URI = 'mongodb+srv://cartlong:E4UwlcV8xMOnmle2@slopeside.ael6zmo.mongodb.net/?retryWrites=true&w=majority';
+const URI = process.env.MONGO_URI;
 // connection to MongoDB with error handling
 async function connectToDb() {
   try {
